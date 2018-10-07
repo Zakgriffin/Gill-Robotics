@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2458.robot;
+//package org.usfirst.frc.team2458.robot;   <-- UNCOMMENT Z
 
 import edu.wpi.cscore.*;
 import edu.wpi.first.wpilibj.*;
@@ -9,7 +9,7 @@ public class Camera {
 	
 	public Camera() {
 		cs = CameraServer.getInstance();
-		cam1 = cs.startAutomaticCapture( "cam0", 0 );
+		cam1 = cs.startAutomaticCapture("cam0", 0);
 		cam1.setResolution(320, 240);
 		cam1.setFPS(15);
 	}
