@@ -9,7 +9,7 @@ public class Drive {
 	private Joystick leftJoy, rightJoy, twistJoy;
 	
 	//Z motor polarity should really be switched
-	private final static double DRIVE_DOWN_SCALE = -0.6;
+	private final static double DRIVE_DOWN_SCALE = 0.6;
 	private final static double CURVE_FACTOR = 0.8; // 0 to 1 range
 	private final static double CF3 = Math.pow(CURVE_FACTOR, 3);
 	
@@ -47,7 +47,7 @@ public class Drive {
 				speedR *= DRIVE_DOWN_SCALE;
 				speedL *= DRIVE_DOWN_SCALE;
 			}
-			drive.tankDrive(speedL, speedR);
+			drive.tankDrive(-speedL, -speedR);
 		}
 	}
 	
