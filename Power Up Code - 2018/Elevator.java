@@ -26,17 +26,22 @@ public class Elevator {
 	public void teleopPeriodic() {
 		double targetSpeed = readJoystick();
 		int encoderValue = cimEncoder.get();
-		System.out.println("Encoder = " + encoderValue);
 		
-		if(encoderValue > 0 && encoderValue < ELEVATOR_LIMIT) {
-			// if elevator within range, move elevator
-			elevatorMotor.set(targetSpeed);
-		}
-		else if(liftJoy.getRawButton(LIMIT_OVERRIDE_BUTTON)) {
+		if(liftJoy.getRawButton(LIMIT_OVERRIDE_BUTTON)) {
 			// override limit and re-calibrate encoder
-			elevatorMotor.set(targetSpeed);
-			//cimEncoder.reset();
+			targetSpeed = readJoystick();
+			cimEncoder.reset();
 		}
+		else if(encoderValue < 0 && targetSpeed < 0) {
+			// elevator at lower limit
+			targetSpeed = 0;
+		}
+		else if(encoderValue > ELEVATOR_LIMIT && targetSpeed > 0) {
+			// elevator at upper limit
+			targetSpeed = 0;
+		}
+		//Z motor polarity should really be switched
+		elevatorMotor.set(-targetSpeed);
 	}
 	
 	

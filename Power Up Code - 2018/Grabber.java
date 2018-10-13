@@ -6,10 +6,14 @@ public class Grabber {
 	private Compressor compressor;
 	private Solenoid grabPiston, foldPiston;
 	private Joystick grabJoy;
+	
 	private boolean isDown = false;
+	private boolean togglePushed = false;
 	
 	private final static int FOLD_UP_BUTTON = 3;
 	private final static int FOLD_DOWN_BUTTON = 5;
+	private final static int TOGGLE_FOLD_BUTTON = 5;
+	
 	
 	public Grabber(Compressor compressor, Solenoid grabPiston, Solenoid foldPiston, Joystick grabJoy) {
 		this.compressor = compressor;
@@ -29,18 +33,27 @@ public class Grabber {
 	}
 
 	public void teleopPeriodic() {
+		isDown = foldPiston.get();
 		// close grabber if trigger pressed
 		grabPiston.set(grabJoy.getTrigger());
 		
 		if(grabJoy.getRawButton(FOLD_UP_BUTTON) && isDown){
 			// fold up grabber
 			foldPiston.set(false);
-			isDown = false;
 		}
 		else if(grabJoy.getRawButton(FOLD_DOWN_BUTTON) && !isDown) {
 			// fold down grabber
 			foldPiston.set(true);
-			isDown = true;
+		}
+		else if(grabJoy.getRawButton(TOGGLE_FOLD_BUTTON) && !togglePushed) {
+			// toggle the grabber
+			togglePushed = true;
+			
+			if(isDown) foldPiston.set(false);
+			else foldPiston.set(true);
+		}
+		if(!grabJoy.getRawButton(TOGGLE_FOLD_BUTTON) && togglePushed) {
+			togglePushed = false;
 		}
 	}
 	

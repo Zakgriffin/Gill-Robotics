@@ -2,7 +2,6 @@ package org.usfirst.frc.team2458.robot;
 
 import edu.wpi.first.wpilibj.*;
 
-//Z I'm not even gonna go near this...
 public class TestAuto {
 	private Joystick leftDrive, rightDrive;
 	private boolean isDone;
