@@ -27,10 +27,10 @@ public class Drive {
 	
 	public void teleopPeriodic() {
 		double twist = twistJoy.getTwist();
-		if(Math.abs(twist) > DEAD_ZONE) {
+		if(Math.abs(twist) > 0.8) {
 			// allows elevator operator to override rotation
-			twist = deadZone(twist, DEAD_ZONE);
-			drive.tankDrive(twist, -twist);
+			twist = deadZone(twist, 0.8);
+			drive.tankDrive(twist * 0.7, -twist * 0.7);
 		} else {
 			// drive functionality
 			double throtR = rightJoy.getY();
