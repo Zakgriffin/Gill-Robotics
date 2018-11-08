@@ -49,14 +49,14 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void autonomousInit() {
-		//drive.autonomousInit();
+		drive.autonomousInit();
 		//elevator.autonomousInit();
 		//grabber.autonomousInit();
 	}
 
 	@Override
 	public void autonomousPeriodic() {
-		//drive.autonomousPeriodic();
+		drive.autonomousPeriodic();
 		//elevator.autonomousPeriodic();
 		//grabber.autonomousPeriodic();
 	}
