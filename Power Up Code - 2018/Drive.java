@@ -74,11 +74,14 @@ public class Drive {
 		leftRight = gameData.substring(0, 1);
 		
 		// Temporary for testing
+		/*
 		leftRight = "R";
 		started = false;
 		isDone = false;
+		*/
 	}
 	public void autonomousPeriodic() {
+		/*
 		if(started == false) {
 			started = true;
 			Timer time = new Timer();
@@ -103,5 +106,6 @@ public class Drive {
 		else {
 			return (joyInput + 1) / (1 - deadZone) - 1;
 		}
+		*/
 	}
 }
